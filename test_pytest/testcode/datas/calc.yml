@@ -1,0 +1,68 @@
+Calculator:
+  ADD:
+    parametrize:
+      - [1, 1, 2]
+      - [100, 1, 200]
+      - [ 0.1, 0.1, 0.2 ]
+      - [ -1, -1, -2 ]
+      - [ 1, 0.5, 1.5 ]
+    ids:
+      - 'int_case_pass'
+      - 'int_case_fail'
+      - 'float_case_pass'
+      - 'minus_case_pass'
+      - 'zero_case_pass'
+  SUB:
+    parametrize:
+      - [1, 1, 0]
+      - [100, 1, 200]
+      - [0.8, 0.1, 0.7]
+      - [-2, -1, -1]
+      - [1, 0.5, 0.5]
+    ids:
+      - 'int_case_pass'
+      - 'int_case_fail'
+      - 'float_case_pass'
+      - 'minus_case_pass'
+      - 'zero_case_pass'
+  MUL:
+    parametrize:
+      - [ 1, 1, 1 ]
+      - [ 100, 1, 200 ]
+      - [ 0.1, 0.1, 0.01 ]
+      - [ -1, -1, 1 ]
+      - [ 1, 0.5, 0.5 ]
+    ids:
+      - 'int_case_pass'
+      - 'int_case_fail'
+      - 'float_case_pass'
+      - 'minus_case_pass'
+      - 'zero_case_pass'
+  DIV:
+    parametrize:
+      - [ 1, 1, 1 ]
+      - [ 100, 1, 200 ]
+      - [ 0.1, 0.1, 1 ]
+      - [ -1, -1, 1 ]
+      - [ 1, 0.5, 2 ]
+    ids:
+      - 'int_case_pass'
+      - 'int_case_fail'
+      - 'float_case_pass'
+      - 'minus_case_pass'
+      - 'zero_case_pass'
+  DIV_ZERO:
+    parametrize:
+      - [1, 0]
+      - [100, 0]
+      - [0.1,0]
+      - [-2,0]
+    ids:
+      - 'int_case_pass'
+      - 'bigint_case_pass'
+      - 'float_case_pass'
+      - 'minus_case_pass'
+
+
+
+
