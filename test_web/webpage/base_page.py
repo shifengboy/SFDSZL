@@ -30,7 +30,6 @@ class BasePage:
             self.driver = driver
             self.driver.implicitly_wait(5)
 
-
         # base_url 打开某个页面
         if self.base_url != "":
             self.driver.get(self.base_url)
@@ -45,3 +44,12 @@ class BasePage:
         element: WebElement = WebDriverWait(self.driver, timeout).until(
             expected_conditions.element_to_be_clickable(locator))
         return element
+
+    def wait_for_next(self, by1, locator1, by2, locator2):
+        try:
+            self.find(by1, locator1).click()
+            return self.find(by2, locator2)
+        except:
+            return False
+
+    # WebDriverWait(self.driver, 10).until(wait_for_next)
