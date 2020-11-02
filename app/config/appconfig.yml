@@ -1,0 +1,27 @@
+desired_caps:
+  "platformName": "Android"
+  "automationName": "UiAutomator2"
+  "platformVersion": "6.0.1"
+  "deviceName": "emulator-5554"
+  "appPackage": "com.tencent.wework"
+  "appActivity": ".launch.WwMainActivity"
+#  "settings[waitForIdleTimeout]": 0
+  "noReset": True  # 不重置APP
+  "skipServerInstallation": True  # 跳过 uiAutomator2服务器安装
+#  "dontStopAppOnReset": True,
+  "skipDeviceInitialization": True   # 跳过设备初始化
+  "unicodeKeyboard": True  # 默认启用 Unicode 输入
+  "resetKeyboard": True  # 与上面合用，可以输入中文
+
+ip:
+  127.0.0.1:4723
+
+
+
+
+
+
+
+
+
+
