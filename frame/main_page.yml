@@ -1,0 +1,10 @@
+goto_market:
+
+# 制造假弹窗
+  - by : xpath
+    loactor: '//*[@resource-id="com.xueqiu.android:id/post_status"]'
+    action: click
+
+  - by: xpath
+    loactor: '//*[@resource-id="android:id/tabs"]//*[@text="行情"]'
+    action: click
