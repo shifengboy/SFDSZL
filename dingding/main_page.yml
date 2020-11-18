@@ -1,0 +1,52 @@
+goto_workbench:
+# 进入工作台
+  - by : xpath
+    loactor: '//*[@resource-id="com.xueqiu.android:id/post_status"]'
+    action: click
+
+  - by: xpath
+    loactor: '//*[@resource-id="android:id/tabs"]//*[@text="行情"]'
+    action: click
+
+
+chose_company:
+# 选择企业
+  - by : xpath
+    loactor: '//*[@resource-id="com.xueqiu.android:id/post_status"]'
+    action: click
+
+  - by: xpath
+    loactor: '//*[@resource-id="android:id/tabs"]//*[@text="行情"]'
+    action: click
+
+goto_attendance:
+# 进入考勤页
+  - by : xpath
+    loactor: '//*[@resource-id="com.xueqiu.android:id/post_status"]'
+    action: click
+
+  - by: xpath
+    loactor: '//*[@resource-id="android:id/tabs"]//*[@text="行情"]'
+    action: click
+
+
+clock_in:
+# 上班打卡
+  - by : xpath
+    loactor: '//*[@resource-id="com.xueqiu.android:id/post_status"]'
+    action: click
+
+  - by: xpath
+    loactor: '//*[@resource-id="android:id/tabs"]//*[@text="行情"]'
+    action: click
+
+
+clock_out:
+# 下班打卡
+  - by : xpath
+    loactor: '//*[@resource-id="com.xueqiu.android:id/post_status"]'
+    action: click
+
+  - by: xpath
+    loactor: '//*[@resource-id="android:id/tabs"]//*[@text="行情"]'
+    action: click
