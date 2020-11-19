@@ -16,11 +16,6 @@ from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
-with open('./base_page.yml') as f:
-    datas = yaml.safe_load(f)
-    desired_caps = datas['desired_caps']
-    ip = datas['ip']
-
 
 class BasePage:
     root_logger = logging.getLogger()
@@ -61,7 +56,6 @@ class BasePage:
         logging.info(f'parse_yaml.func_name:{func_name}')
         with open(path, encoding='UTF-8') as f:
             datas = yaml.safe_load(f)
-            # print(datas[func_name])
             self.parse(datas[func_name])
 
     def parse(self, steps):

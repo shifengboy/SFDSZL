@@ -6,12 +6,21 @@
 @time:2020/11/19
 @case：钉钉下班打卡
 """
-from dingding.main_page import MainPage
+from dingding.page.app import APP
 
 
 class TestGoOffWork:
+
     def setup(self):
-        self.page = MainPage()
+        self.app = APP()
+
+        # 登录处理
+        try:
+            self.app.login()
+        except Exception:
+            pass
+
+        self.page = self.app.goto_main_page()
 
     def test_gooffwork(self):
         self.page.goto_workbench().chose_company().clock_out()

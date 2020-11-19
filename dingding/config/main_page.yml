@@ -50,3 +50,13 @@ clock_out:
   - by: xpath
     loactor: '//*[@resource-id="android:id/tabs"]//*[@text="行情"]'
     action: click
+
+update_clock_out:
+# 更新下班打卡
+  - by : xpath
+    loactor: '//*[@resource-id="com.xueqiu.android:id/post_status"]'
+    action: click
+
+  - by: xpath
+    loactor: '//*[@resource-id="android:id/tabs"]//*[@text="行情"]'
+    action: click
