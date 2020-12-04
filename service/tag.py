@@ -9,6 +9,7 @@ import json
 from typing import List
 
 import requests
+from jsonpath import jsonpath
 
 
 class Tag:
@@ -21,6 +22,33 @@ class Tag:
             'https://qyapi.weixin.qq.com/cgi-bin/gettoken',
             params={'corpid': corpid, 'corpsecret': corpsecret})
         return r.json()["access_token"]
+
+    # 根据group_name获取get_group_id
+    def get_group_id(self, group_name=None):
+
+        # 若标签组为空，返回所有标签组id
+        if group_name is None or group_name == '':
+            r = self.list()
+            # print(json.dumps(r.json(), indent=2))
+            return jsonpath(r.json(), "$..group_id")
+        else:
+            r = self.list()
+            return jsonpath(r.json(), f"$..[?(@.group_name=='{group_name}')]")[0]['group_id']
+
+    # 根据tag_name获取get_group_id
+    def get_tag_id(self,tag_name):
+        r = self.list()
+        return jsonpath(r.json(), f"$..[?(@.name=='{tag_name}')]")[0]['id']
+
+    def get_tag_ids(self,*tag_name):
+        ids = []
+        print(tag_name)
+        r = self.list()
+        for name in tag_name:
+            print(name)
+            id = jsonpath(r.json(), f"$..[?(@.name=='{name}')]")[0]['id']
+            ids.append(id)
+        return ids
 
     def add(self, tag_name, tag_order=None, group_id=None, group_name=None, order=None):
         r = requests.post(
