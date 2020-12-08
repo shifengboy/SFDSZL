@@ -1,0 +1,29 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+"""
+@author:chenshifeng
+@file:baseapi.py
+@time:2020/12/06
+"""
+import requests
+
+
+class BaseApi:
+    def __init__(self, corpid, corpsecret):
+        self.token = self.get_token(corpid, corpsecret)
+
+    def get_token(self, corpid, corpsecret):
+        # r = requests.get(
+        #     'https://qyapi.weixin.qq.com/cgi-bin/gettoken',
+        #     params={'corpid': corpid, 'corpsecret': corpsecret})
+        data = {
+            'method': 'get',
+            'url': 'https://qyapi.weixin.qq.com/cgi-bin/gettoken',
+            'params': {'corpid': corpid, 'corpsecret': corpsecret}
+        }
+        r = self.send(data)
+        return r.json()["access_token"]
+
+    def send(self, kwargs):
+        r = requests.request(**kwargs)
+        return r
