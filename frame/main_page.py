@@ -19,5 +19,4 @@ class Main(BasePage):
         # self.find(MobileBy.XPATH, '//*[@resource-id="android:id/tabs"]//*[@text="行情"]').click()
         self.parse_yaml('./main_page.yml','goto_market')
 
-
         return Market(self.driver)

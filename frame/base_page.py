@@ -16,6 +16,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 from frame.handle_black import handle_black
+# from frame.handle_black2 import handle_black2
 
 with open('./base_page.yml') as f:
     datas = yaml.safe_load(f)

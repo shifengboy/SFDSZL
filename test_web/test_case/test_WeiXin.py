@@ -7,7 +7,7 @@
 """
 
 
-# from web.podemo1.page.main_page import MainPage
+# from web.podemo1.webpage.main_page import MainPage
 # from test_web.webpage.main_page import MainPage
 #
 #
@@ -35,9 +35,9 @@ class TestWeiXin:
         username = "sfusernametest003"
         account = "sfaccounttest003"
         phonenum = "13400000004"
-        # self.page.goto_addmember().add_member(username, account, phonenum)
+        # self.webpage.goto_addmember().add_member(username, account, phonenum)
 
-        # assert (username in self.page.goto_addmember().get_member(username))
+        # assert (username in self.webpage.goto_addmember().get_member(username))
         addmember = self.page.goto_addmember()
         addmember.add_member(username, account, phonenum)
         assert  addmember.get_member(username)

@@ -21,3 +21,5 @@ class TestAlert(Base):
         self.driver.switch_to.default_content()
         self.driver.find_element_by_id('submitBTN').click()
         sleep(2)
+
+

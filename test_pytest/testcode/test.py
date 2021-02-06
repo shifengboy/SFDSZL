@@ -23,3 +23,11 @@ def test_case2(login):
 
 def test_case3(login):
     print('case3')
+
+
+def test_assert():
+    a = 10
+    b = 20
+    # assert a > b
+    assert 'h' in 'this'
+

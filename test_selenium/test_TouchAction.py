@@ -7,8 +7,10 @@
 """
 
 import time
+
 from selenium import webdriver
 from selenium.webdriver import TouchActions
+
 
 
 class TestTouchAction():
@@ -22,7 +24,7 @@ class TestTouchAction():
 
     def teardown_method(self):
         self.driver.quit()
-
+        pass
     def test_touchaction_scrollbottom(self):
         self.driver.get("https://www.baidu.com/")
         el = self.driver.find_element_by_id('kw')
@@ -33,3 +35,8 @@ class TestTouchAction():
         action.perform()
         action.scroll_from_element(el, 0, 10000).perform()
         time.sleep(3)
+
+
+
+
+

@@ -7,10 +7,9 @@
 """
 
 
-# 测试用例之前，先执行login方法
 import pytest
 
-
+# 测试用例之前，先执行login方法
 def test_case1(login):
     print(f'case1 login={login}')
 

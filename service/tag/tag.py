@@ -9,6 +9,7 @@ import json
 from typing import List
 
 import requests
+import yaml
 from jsonpath import jsonpath
 
 from service.baseapi import BaseApi
@@ -18,6 +19,7 @@ class Tag(BaseApi):
 
     def __init__(self, corpid, corpsecret):
         super(Tag, self).__init__(corpid, corpsecret)
+        self.params['token'] = self.token
 
     # 根据group_name获取get_group_id
     def get_group_id(self, group_name):
@@ -126,17 +128,22 @@ class Tag(BaseApi):
         return r
 
     def update(self, id, tag_name):
-        data = {
-            'method': 'post',
-            'url': 'https://qyapi.weixin.qq.com/cgi-bin/externalcontact/edit_corp_tag',
-            'params': {'access_token': self.token},
-            'json': {
-                "id": id,
-                "name": tag_name,
-            }
-        }
+        # data = {
+        #     'method': 'post',
+        #     'url': 'https://qyapi.weixin.qq.com/cgi-bin/externalcontact/edit_corp_tag',
+        #     'params': {'access_token': self.token},
+        #     'json': {
+        #         "id": id,
+        #         "name": tag_name,
+        #     }
+        # }
         # print(json.dumps(r.json(), indent=2))
-        r = self.send(data)
+        self.params['id'] = id
+        self.params['tag_name'] = tag_name
+        with open('tag.yml',encoding='UTF-8') as f:
+            data = yaml.safe_load(f)
+        r = self.send(data['update'])
+        print(json.dumps(r.json(), indent=2))
         return r
 
     def delete(self, tag_id: List = None, group_id: List = None):
@@ -173,3 +180,10 @@ class Tag(BaseApi):
                     deleted_group_ids.append(group_id)
             r = self.delete(group_id=deleted_group_ids)
         return r
+
+if __name__ == '__main__':
+    # with open('tag.yml', encoding='UTF-8') as f:
+    #     data = yaml.safe_load(f)
+    # print(data['update'])
+    demo = Tag(corpid='ww1f67d03559842a74', corpsecret='qHoLjOXpHxtHp5ZtXOB8_IOpmywjRK9QGChKaSeBd6A')
+    print(demo.list().text)

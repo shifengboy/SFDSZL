@@ -12,11 +12,10 @@ import pytest
 import subprocess
 
 
-
 @pytest.fixture(scope='module', autouse=True)
 def record_vedio():
     command = "scrcpy --record tmp.mp4"
     p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    print(p)
+    # print(p)
     yield
     os.kill(p.pid, signal.SIGINT)

@@ -12,6 +12,7 @@ def handle_black(func):
     def wrapper(*args, **kwargs):
         from frame.base_page import BasePage
         instance: BasePage = args[0]
+        print(args)
         try:
             result = func(*args, **kwargs)
             instance.err_num = 0

@@ -1,0 +1,9 @@
+{
+  "name": "chenshifeng",
+  "age": 18
+  "interest": ["song","eat","TV","movie"],
+  "work": {
+    "company1": "software testing",
+    "company2": " software development"
+  }
+}

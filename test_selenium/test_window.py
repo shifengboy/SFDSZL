@@ -21,7 +21,7 @@ class TestWindow(Base):
         self.driver.find_element_by_link_text('登录').click()
         self.driver.find_element_by_link_text('立即注册').click()
         print(self.driver.current_window_handle)  # 当前窗口
-        print(self.driver.window_handles)  # 当前窗口
+        print(self.driver.window_handles)  # 当前所有窗口
         windows=self.driver.window_handles
         self.driver.switch_to_window(windows[-1])   # 切换窗口
         self.driver.find_element_by_id('TANGRAM__PSP_4__userName').send_keys('username')

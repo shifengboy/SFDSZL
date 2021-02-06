@@ -4,6 +4,13 @@
 @Date:2020/9/1311:07 PM
 
 '''
+
+
+def setup_function():
+    print('setup_function')
+
+def teardown_function():
+    print('teardown_function')
 def add(x,y):
     return x+y
 
@@ -14,10 +21,16 @@ def test_add():
 
 class TestClass:
 
+    def setup(self):
+        print('setup')
+
+    def teardown(self):
+        print('teardown')
+
     def test_one(self):
         x = "this"
         assert "h" in x
 
     def test_two(self):
         x = "hello"
-        assert hasattr(x,"check")
+        assert hasattr(x,"split")

@@ -1,0 +1,8 @@
+update:
+  'method': 'post'
+  'url': 'https://qyapi.weixin.qq.com/cgi-bin/externalcontact/edit_corp_tag'
+  'params':
+    'access_token': ${token}
+  'json':
+    "id": ${id}
+    "name": ${tag_name}

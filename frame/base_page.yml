@@ -5,7 +5,7 @@ desired_caps:
   "deviceName": "emulator-5554"
   "appPackage": "com.xueqiu.android"
 # "appActivity": ".view.WelcomeActivityAlias"
-  "appActivity": ".common.MainActivity"
+  "appActivity": ".main.view.MainActivity"
 #  "settings[waitForIdleTimeout]": 0
   "noReset": True  # 不重置APP
   "skipServerInstallation": True  # 跳过 uiAutomator2服务器安装

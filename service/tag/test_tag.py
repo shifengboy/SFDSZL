@@ -40,8 +40,8 @@ class TestTag:
         assert r
 
     @pytest.mark.parametrize('tag_name,tag_name_new', [
-        ['test_add', 'test_add_new1'],
-        ['test_add_中文', 'test_add_中文_new1']
+        ['${tag_name}', 'test_add_haha'],
+        # ['test_add_中文', 'test_add_中文_new1']
     ])
     def test_tag_update(self, tag_name, tag_name_new):
         '''
