@@ -29,11 +29,7 @@ class BasePage:
         初始化应用
         '''
 
-        if driver is None:
-            self.driver = webdriver.Remote(f'http://{ip}/wd/hub', desired_caps)
-            self.driver.implicitly_wait(10)
-        else:
-            self.driver = driver
+        self.driver = driver
 
     def find(self, by, locator=None) -> WebElement:
         '''

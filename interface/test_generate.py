@@ -9,7 +9,7 @@ import json
 from mitmproxy import http
 
 # 修改规则模型
-rule = [0, 1, 3, 5, 100,-10,300]
+rule = [0, 1, 3, 5, 7,-10]
 
 # 统计url
 url_index = dict()
@@ -37,12 +37,13 @@ def response(flow: http.HTTPFlow):
 
         # 对数据进行批量修改
         # data_new = json_travel(data, num=9)
-        data_new = json_travel(data, num=rule[seed])
+        data_new = json_travel(data, array=rule[seed])
+        print("array:",rule[seed])
 
         # data['data']['items'][0]['quote']['name'] = "hhshife0001"
         # data['data']['items'][1]['quote']['name'] = "shife00002"
         # data['data']['items'][1]['quote']['current'] = 0.1
-        print('data_new:',data_new)
+        # print('data_new:',data_new)
         # 把修改后的内容赋值给 response 原始数据格式
         # flow.response.text = json.dumps(data)
         flow.response.text = json.dumps(data_new)

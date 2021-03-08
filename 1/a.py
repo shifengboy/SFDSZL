@@ -1,7 +1,8 @@
-import json
-import time
+from selenium import webdriver
 
-list1 = [1, 2, 3]
-print(type(list1))
-data2 = json.dumps(list1)
-print(type(data2))
+
+class TestWorkWeixin:
+    def setup(self):
+        self.driver = webdriver.Chrome()
+        self.driver.maximize_window()
+        self.driver.get('https://work.weixin.qq.com/wework_admin/frame')

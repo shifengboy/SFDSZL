@@ -1,70 +1,62 @@
-#!/usr/bin/python
-# -*- coding: UTF-8 -*-
-"""
-@author:chenshifeng
-@file:flask_restful_demo.py
-@time:2021/01/22
-"""
-from flask import Flask, request, jsonify
-from flask_restful import Resource, Api
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask
+from flask_restful import reqparse, abort, Api, Resource
 
 app = Flask(__name__)
 api = Api(app)
-app.config['db'] = []
 
-username = 'shifeng_test'
-password = '123456'
-host = '127.0.0.1'
-port = 3306
-dbname = 'flask'
-option = 'charset=utf8mb4'
-
-app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{username}:{password}@{host}:{port}/{dbname}?{option}'
-db = SQLAlchemy(app)
+TODOS = {
+    'todo1': {'task': 'build an API'},
+    'todo2': {'task': '?????'},
+    'todo3': {'task': 'profit!'},
+}
 
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=False, nullable=False)
-    steps = db.Column(db.String(1024), nullable=True)
+def abort_if_todo_doesnt_exist(todo_id):
+    if todo_id not in TODOS:
+        abort(404, message="Todo {} doesn't exist".format(todo_id))
 
-    def __repr__(self):
-        return '<User %r>' % self.username
+parser = reqparse.RequestParser()
+parser.add_argument('task')
 
 
-class TestCase(Resource):
+# Todo
+# shows a single todo item and lets you delete a todo item
+class Todo(Resource):
+    def get(self, todo_id):
+        abort_if_todo_doesnt_exist(todo_id)
+        return TODOS[todo_id]
+
+    def delete(self, todo_id):
+        abort_if_todo_doesnt_exist(todo_id)
+        del TODOS[todo_id]
+        return '', 204
+
+    def put(self, todo_id):
+        args = parser.parse_args()
+        task = {'task': args['task']}
+        TODOS[todo_id] = task
+        return task, 201
+
+
+# TodoList
+# shows a list of all todos, and lets you POST to add new tasks
+class TodoList(Resource):
     def get(self):
-        testcase_id = request.args.get('id', None)
-        if testcase_id:
-            testcase = User.query.filter_by(id=testcase_id).first()
-            # return testcase.username
-            return jsonify(errorcode=0, bddy=testcase.username)
-        else:
-            return [user.username for user in User.query.all()]
+        return TODOS
 
     def post(self):
-        # todo:用例的新增
-        # app.config['db'].append(request.json)
-        print(request.json)
-        user = User(**request.json)
-        print(user)
-        db.session.add(user)
-        db.session.commit()
+        args = parser.parse_args()
+        todo_id = int(max(TODOS.keys()).lstrip('todo')) + 1
+        todo_id = 'todo%i' % todo_id
+        TODOS[todo_id] = {'task': args['task']}
+        return TODOS[todo_id], 201
 
-        return {"msg": request.json, "errorcode": 0}
+##
+## Actually setup the Api resource routing here
+##
+api.add_resource(TodoList, '/todos')
+api.add_resource(Todo, '/todos/<todo_id>')
 
-    def put(self):
-        # todo:用例的更新
-        pass
-
-    def delete(self):
-        # todo:用例的删除
-        pass
-
-
-api.add_resource(TestCase, '/testcase')
 
 if __name__ == '__main__':
     app.run(debug=True)

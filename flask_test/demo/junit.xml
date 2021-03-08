@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+    <testsuite name="pytest" errors="0" failures="2" skipped="1" tests="6" time="0.065"
+               timestamp="2021-03-07T23:54:22.057969" hostname="chenshifengdeMacBook-Pro.local">
+        <testcase classname="test_demo" name="test_success_demo" time="0.001"/>
+        <testcase classname="test_demo" name="test_fail_demo" time="0.001">
+            <failure message="assert 1 == 2">def test_fail_demo():
+                &gt; assert 1 == 2
+                E assert 1 == 2
+
+                test_demo.py:16: AssertionError
+            </failure>
+        </testcase>
+        <testcase classname="test_demo" name="test_skip_demo" time="0.001">
+            <skipped type="pytest.skip" message="skip">
+                /Users/chenshifeng/MyCode/PythonCode/SFDSZL/flask_test/demo/test_demo.py:20: skip
+            </skipped>
+        </testcase>
+        <testcase classname="test_demo" name="test_params[1-1-2]" time="0.001"/>
+        <testcase classname="test_demo" name="test_params[2-2-3]" time="0.001">
+            <failure message="assert 3 == (2 + 2)">a = 2, b = 2, result = 3
+
+                @pytest.mark.parametrize('a,b,result', [
+                [1, 1, 2],
+                [2, 2, 3],
+                [3, 4, 7]
+                ])
+                def test_params(a, b, result):
+                &gt; assert result == a + b
+                E assert 3 == (2 + 2)
+
+                test_demo.py:29: AssertionError
+            </failure>
+        </testcase>
+        <testcase classname="test_demo" name="test_params[3-4-7]" time="0.001"/>
+    </testsuite>
+</testsuites>

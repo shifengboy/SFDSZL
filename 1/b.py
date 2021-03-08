@@ -53,8 +53,9 @@ for i in range(len(ips)):
     print("开始请求")
     user_agent = random.choice(user_agents)
     proxy = ips[i]
-    res = requests.get('https://www.cnblogs.com/feng0815/p/14182210.html', headers={'user_agent': user_agent}, proxies={'http': proxy})
+    res = requests.get('https://blog.csdn.net/shifengboy/article/details/114274271', headers={'user_agent': user_agent}, proxies={'http': proxy})
     print(user_agent + '\t' + proxy, end='\t')
     print(res)
+    # print(res.text)
     print("请求结束，准备下一次请求......")
-    time.sleep(10)
+    time.sleep(2)

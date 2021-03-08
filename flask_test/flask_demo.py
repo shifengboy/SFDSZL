@@ -1,43 +1,35 @@
-#!/usr/bin/python
-# -*- coding: UTF-8 -*-
-"""
-@author:chenshifeng
-@file:flask_demo.py
-@time:2021/01/22
-"""
-
-
-from flask import Flask, escape, url_for, request, session
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.secret_key="shifeng"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+db = SQLAlchemy(app)
 
-@app.route('/')
-def index():
-    return 'index'
 
-@app.route('/login',methods=['GET', 'POST'])
-def login():
-    res = {
-        "method":request.method,
-        "url":request.path,
-        "args":request.args,
-        "form":request.form
-    }
-    session["username"] = request.args.get('name')
-    return res
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True)
+    email = db.Column(db.String(120), unique=True)
 
-@app.route('/user/<username>')
-def profile(username):
-    return '{}\'s profile'.format(escape(username))
+    def __init__(self, username, email):
+        self.username = username
+        self.email = email
 
-with app.test_request_context():
-    print(url_for('index'))
-    print(url_for('login'))
-    print(url_for('login', next='/'))
-    print(url_for('profile', username='John Doe'))
+    def __repr__(self):
+        return '<User %r>' % self.username
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
-
+    # 创建初始数据
+    db.create_all()
+    # 创建一些用户
+    # admin = User('admin', 'admin@example.com')
+    # guest = User('guest', 'guest@example.com')
+    # # 写入到数据库
+    # db.session.add(admin)
+    # db.session.add(guest)
+    # db.session.commit()
+    # 访问数据库
+    users = User.query.all()
+    admin = User.query.filter_by(username='admin').first()
+    print(users)
+    print(admin)
